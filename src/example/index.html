@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Example</title>
+</head>
+<body>
+  <!-- <script src="./error.js"></script> -->
+  <script>
+    function clickRuntimeError() {
+      window.test.error = 'runtime error';
+    }
+
+    function clickPromiseError() {
+      Promise.reject('Promise Error1');
+      // Promise.reject('Promise Error2');
+      Promise.reject('Promise Error2').catch(error => {
+        console.log(error);
+      });
+    }
+
+    function clickConsoleError() {
+      console.error('this is console error');
+    }
+
+    function callbackError() {
+      throw Error('callback error');
+    }
+    function clickCallbackError(fn) {
+      fn();
+    }
+  </script>
+  <button onclick="clickRuntimeError()">点击抛出运行时错误</button>
+  <button onclick="clickPromiseError()">点击抛出Promise错误</button>
+  <button onclick="clickConsoleError()">点击抛出console.log错误</button>
+  <button onclick="clickCallbackError(callbackError)">点击抛出回调函数错误</button>
+  <div>
+    <img src="https://cdn.example.com/error.png" alt="资源加载错误">
+  </div>
+  <script src="../sdk/eagle.js"></script>
+</body>
+</html>
